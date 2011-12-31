@@ -10,4 +10,4 @@ Graphics provided by https://github.com/ippa/chingu
 == RUN
   ruby main.rb
 
-Hit space to toggle running.
+Hit space to toggle running. Esc will close the window.
