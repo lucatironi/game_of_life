@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Cell do
 
   context ".coords" do
-    specify { Cell.new(0,0).coords.should eq({ x: 0, y: 0 }) }
-    specify { Cell.new(0,1).coords.should eq({ x: 0, y: 1 }) }
+    specify { Cell.new(0,0).coords.should eq({ :x => 0, :y => 0 }) }
+    specify { Cell.new(0,1).coords.should eq({ :x => 0, :y => 1 }) }
     context "[:x]" do
       specify { Cell.new(0,1).coords[:x].should eq(0) }
     end
@@ -35,6 +35,10 @@ describe Cell do
         cell.evolve!(4).should_not be_alive
       end
     end
+    context ".coords" do
+      specify { LiveCell.new(0,1).evolve!.coords[:x].should eq(0) }
+      specify { LiveCell.new(0,1).evolve!.coords[:y].should eq(1) }
+    end
   end
 
   context "DeadCell" do
@@ -55,6 +59,10 @@ describe Cell do
       it "should remain dead with more than 3 neighbours" do
         cell.evolve!(4).should_not be_alive
       end
+    end
+    context ".coords" do
+      specify { DeadCell.new(0,1).evolve!.coords[:x].should eq(0) }
+      specify { DeadCell.new(0,1).evolve!.coords[:y].should eq(1) }
     end
   end
 end

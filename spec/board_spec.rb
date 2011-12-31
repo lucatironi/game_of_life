@@ -25,6 +25,15 @@ describe Board do
     end
   end
 
+  context ".cell_at" do
+    it "should return the cell at given coords" do
+      target_cell = LiveCell.new(1,1)
+      Board.new([DeadCell.new(0,0), LiveCell.new(1,0), DeadCell.new(2,0),
+                 DeadCell.new(0,1), target_cell, DeadCell.new(2,1),
+                 DeadCell.new(0,2), LiveCell.new(1,2), DeadCell.new(2,2)]).cell_at({x: 1, y: 1}).should eq(target_cell)
+    end
+  end
+
   context ".alive_neighbours" do
     it "should return 2 alive neighbours for the Central cell with seed [0,1,0,0,1,0,0,1,0]" do
       Board.new([DeadCell.new(0,0), LiveCell.new(1,0), DeadCell.new(2,0),

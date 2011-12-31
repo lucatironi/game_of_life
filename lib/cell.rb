@@ -5,7 +5,7 @@ class Cell
   end
 
   def coords
-    { x: @x, y: @y }
+    { :x => @x, :y => @y }
   end
 end
 
@@ -15,8 +15,8 @@ class LiveCell < Cell
   end
 
   def evolve! neighbours = 0
-    return DeadCell.new if neighbours < 2 or neighbours > 3
-    LiveCell.new
+    return DeadCell.new(self.coords[:x], self.coords[:y]) if neighbours < 2 or neighbours > 3
+    LiveCell.new(self.coords[:x], self.coords[:y])
   end
 end
 
@@ -25,8 +25,8 @@ class DeadCell < Cell
     false
   end
 
-  def evolve! neighbours = 0 
-    return LiveCell.new if neighbours == 3
-    DeadCell.new
+  def evolve! neighbours = 0
+    return LiveCell.new(self.coords[:x], self.coords[:y]) if neighbours == 3
+    DeadCell.new(self.coords[:x], self.coords[:y])
   end
 end

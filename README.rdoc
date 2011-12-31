@@ -1,0 +1,10 @@
+= Game of Life
+
+A TDD implementation of a simple oscillator with RSpec & Ruby.
+Graphics provided by https://github.com/ippa/chingu
+
+== INSTALL
+  gem install chingu
+
+== RUN
+  ruby main.rb
