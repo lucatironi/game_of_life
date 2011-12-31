@@ -4,7 +4,10 @@ A TDD implementation of a simple oscillator with RSpec & Ruby.
 Graphics provided by https://github.com/ippa/chingu
 
 == INSTALL
+  git clone git@github.com:lucatironi/game_of_life.git
   gem install chingu
 
 == RUN
   ruby main.rb
+
+Hit space to toggle running.
