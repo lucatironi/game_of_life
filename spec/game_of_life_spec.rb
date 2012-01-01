@@ -16,12 +16,6 @@ describe GameOfLife do
     specify { @game.board.should be_kind_of Board }
   end
 
-  context ".seed" do
-    it "should initialize the Board with an initial seed of Cells" do
-      @game.seed([LiveCell.new]).cells.first.should be_kind_of Cell
-    end
-  end
-
   context ".toggle_running" do
     it "should change the running state of the game" do
       @game.should_not be_running
@@ -29,6 +23,13 @@ describe GameOfLife do
       @game.should be_running
       @game.toggle_running
       @game.should_not be_running
+    end
+  end
+
+  context ".random_seed" do
+    it "should populate the Board with an initial random seed of Cells" do
+      @game.random_seed
+      @game.board.cells.size.should eq((GameOfLife::WINDOW_WIDTH / GameOfLife::CELL_SIZE) * (GameOfLife::WINDOW_HEIGHT / GameOfLife::CELL_SIZE))
     end
   end
 

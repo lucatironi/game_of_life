@@ -9,16 +9,17 @@ include Gosu
 include Chingu
 
 class GameOfLife < Chingu::Window
-  WINDOW_SIZE = 400
-  CELL_SIZE = WINDOW_SIZE / 5
+  WINDOW_WIDTH = 400
+  WINDOW_HEIGHT = 400
+  CELL_SIZE = 20
   @@tick = 0
 
   attr_reader :board
 
   def initialize
-    super(WINDOW_SIZE, WINDOW_SIZE, false, 200)
+    super(WINDOW_WIDTH, WINDOW_HEIGHT, false, 100)
     $window.caption = "Game of Life - Generation #{@@tick}"
-    self.input = { :esc => :exit, :space => :toggle_running }
+    self.input = { :esc => :exit, :space => :toggle_running, :return => :random_seed }
     @running = false
     @board = Board.new
   end
@@ -29,6 +30,17 @@ class GameOfLife < Chingu::Window
 
   def seed cells = []
     @board = Board.new cells
+  end
+
+  def random_seed
+    new_seed = []
+    for j in 0..(WINDOW_HEIGHT / CELL_SIZE)-1
+      for i in 0..(WINDOW_WIDTH / CELL_SIZE)-1
+        status = rand(6) == 1
+        new_seed << (status ? LiveCell.new(i, j) : DeadCell.new(i, j))
+      end
+    end
+    self.seed new_seed
   end
 
   def update

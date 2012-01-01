@@ -1,3 +1,3 @@
-require_relative '../lib/cell'
-require_relative '../lib/board'
-require_relative '../lib/game_of_life'
+$LOAD_PATH << './lib'
+
+require 'game_of_life'
